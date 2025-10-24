@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.Scanner;
+import model.SchoolController;
 
 public class SchoolApp {
 
@@ -11,6 +12,7 @@ public class SchoolApp {
      */
 
     private Scanner input;
+    private SchoolController controller;
 
     public static void main(String[] args) {
 
@@ -76,6 +78,14 @@ public class SchoolApp {
      */
 
     public void registrarComputador() {
+
+        System.out.println("Ingrese el piso donde esta el computador a registrar");
+        int floor = input.nextInt();
+        input.nextLine();
+        System.out.println("Ingresa el numero de serie del computador");
+        String serialNumber = input.nextLine();
+
+        controller.registrarComputador(floor, serialNumber);
 
     }
 
