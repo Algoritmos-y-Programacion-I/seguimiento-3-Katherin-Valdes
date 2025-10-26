@@ -1,16 +1,14 @@
 package ui;
 
 import java.util.Scanner;
+import model.SchoolController;
+import java.time.LocalDate;
 
 public class SchoolApp {
 
-    /*
-     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     * Agregue los atributos (relaciones) necesarios para conectar esta clase con el
-     * modelo.
-     */
-
+    
     private Scanner input;
+    private SchoolController controller;
 
     public static void main(String[] args) {
 
@@ -33,6 +31,8 @@ public class SchoolApp {
 
     public void menu() {
 
+        controller = new SchoolController();
+
         System.out.println("Bienvenido a Computaricemos");
 
         int option = 0;
@@ -42,7 +42,7 @@ public class SchoolApp {
             System.out.println("Digite alguna de las siguientes opciones");
             System.out.println("1) Registrar computador");
             System.out.println("2) Registrar incidente en computador");
-            System.out.println("3) Consultar el computador con más incidentes");
+            System.out.println("3) Consultar el computador con mas incidentes");
             System.out.println("0) Salir del sistema");
             option = input.nextInt();
 
@@ -77,13 +77,76 @@ public class SchoolApp {
 
     public void registrarComputador() {
 
+        System.out.println("Ingrese el piso donde esta el computador a registrar");
+        int floor = input.nextInt();
+        input.nextLine();
+        System.out.println("Ingresa el numero de serie del computador");
+        String serialNumber = input.nextLine();
+
+        controller.agregarComputador(floor, serialNumber);
+
     }
 
     public void registrarIncidenteEnComputador() {
 
+        String option = " ";
+
+        
+        
+        do{         
+
+            System.out.println("Ingresa los datos de la fecha en que ocurrio el incidente");
+            System.out.println("Ingresa el dia");
+            int dia = input.nextInt();
+            input.nextLine();
+            System.out.println("Ingresa el mes");
+            int mes = input.nextInt();
+            input.nextLine();
+            System.out.println("Ingresa el anio");
+            int anio = input.nextInt();
+            input.nextLine();
+
+            LocalDate dateReport = LocalDate.of(anio, mes, dia);
+
+            System.out.println("Digita el numero de serie del computador al cual vas a registrar el incidente");
+            String serialNumber = input.nextLine();
+
+            System.out.println("Ingresa la descripcion del incidente");
+            String description = input.nextLine();
+
+            System.out.println("El problema esta solucionado? (si/no)");
+            String decision = input.nextLine().trim().toLowerCase();
+
+            if(decision.equals("si")){
+
+                boolean solution = true;
+
+                System.out.println("¿En cuantas horas se soluciono el problema?");
+                int solutionHours = input.nextInt();
+                input.nextLine();
+
+                controller.agregarIncidenteEnComputador(serialNumber, dateReport, description, solution, solutionHours);
+
+            }else{
+
+                controller.agregarIncidenteEnComputador(serialNumber, dateReport, description, false, 0);
+
+            }
+            System.out.println("¿Deseas agregar mas incidentes ? (si/no)");
+            option = input.nextLine();
+
+        } while(option.equals("si"));
+
+        
+
+
+        
+
     }
 
     public void consultarComputadorConMasIncidentes() {
+
+        controller.getComputerList();
 
     }
 
