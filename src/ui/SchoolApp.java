@@ -22,18 +22,17 @@ public class SchoolApp {
         input = new Scanner(System.in);
     }
 
-    /*
-     * ATENCION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     * El siguiente metodo esta incompleto.
-     * Agregue la logica necesaria (instrucciones) para satisfacer los
-     * requerimientos
-     */
+    
 
     public void menu() {
 
         controller = new SchoolController();
 
         System.out.println("Bienvenido a Computaricemos");
+
+        System.out.println("Asi se encuentra distribuido el edificio");
+
+        controller.mostrarDistribucionEdicficio();
 
         int option = 0;
         do {
@@ -136,11 +135,7 @@ public class SchoolApp {
             option = input.nextLine();
 
         } while(option.equals("si"));
-
-        
-
-
-        
+       
 
     }
 

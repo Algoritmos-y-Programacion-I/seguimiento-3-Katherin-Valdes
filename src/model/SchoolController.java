@@ -17,13 +17,26 @@ public class SchoolController {
 
     }
 
+    /**
+     * Descripcion: busca el piso especifico segun lo ingresado por el usuario
+     * @param int floor 
+     * @return boolean 
+     */
     
     public boolean searchPiso(int floor){
-        if (floor < 0 || floor > matrizComputadores.length){
+
+        int evaluar = matrizComputadores.length - floor;
+        if (evaluar < 0 || evaluar > matrizComputadores.length){
             return false;
         }
         return true;
     }
+
+    /**
+     * Descripcion: busca un computador en especifico basado en su numero serial
+     * @param String serialNumber 
+     * @return Computer 
+     */
     
     public Computer searchSerialNumber(String serialNumber){
 
@@ -47,11 +60,18 @@ public class SchoolController {
         return null;
     }
 
+    /**
+     * Descripcion: registra a un nuevo computador en un piso especifico que indica el usuario
+     * @param int floor 
+     * @param String serialNumber
+     * @return - 
+     */
+
     public void agregarComputador(int floor, String serialNumber) {
 
         int eleccionPiso = floor - 1;
         boolean searchPiso = searchPiso(floor);
-        Computer verficar = searchSerialNumber(serialNumber);
+        Computer verificar = searchSerialNumber(serialNumber);
 
         if ( verificar != null){
 
@@ -91,6 +111,17 @@ public class SchoolController {
 
     }
 
+    /**
+     * Descripcion: registra un nuevo incidente asociado a un computador en especifico
+     * 
+     * @param String serialNumber
+     * @param LocalDate dateReport
+     * @param String description
+     * @param bolean solution 
+     * @param int solutionHours
+     * @return - 
+     */
+
     public void agregarIncidenteEnComputador(String serialNumber, LocalDate dateReport, String description, boolean solution, int solutionHours) {
 
         System.out.println("Buscando" + serialNumber);
@@ -111,6 +142,12 @@ public class SchoolController {
         
 
     }
+
+    /**
+     * Descripcion: Muestra cual es el computador que tiene mas incidentes registrados
+     * @param -
+     * @return - 
+     */
 
     public void getComputerList() {
 
@@ -134,10 +171,27 @@ public class SchoolController {
         if ( computermax != null){
             System.out.println("El computador con mas incidentes es:" + computermax.getSerialNumber());
             System.out.println("Con " + maxIncidents+ " incidentes");
-            
+
         }
 
         
 
+    }
+
+    /**
+     * Descripcion: Muestra al usuario cuales son los espcios en los edicios
+     * 
+     */
+
+    public void mostrarDistribucionEdicficio(){
+
+        
+        for(int i = 0; i < matrizComputadores.length; i++){
+            System.out.print("Piso " + (floor - i));
+            for(int j = 0; j < matrizComputadores[0].length; j++){
+                System.out.print("|   ");
+            }
+            System.out.println("|");
+        }
     }
 }

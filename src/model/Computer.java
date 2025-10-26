@@ -36,7 +36,14 @@ public class Computer {
         return listaIncidents;
     }
 
-
+    /**
+     * Descripcion: agrega un nuevo incidente con todos los elementos a la lista
+     * @param LocalDate dateRepor 
+     * @param String description
+     * @param boolean solution
+     * @param int solutionHours
+     * @return - 
+     */
     
     public void addIncident(LocalDate dateReport, String description, boolean solution, int solutionHours) {
 
@@ -46,6 +53,13 @@ public class Computer {
 
     }
 
+    /**
+     * Descripcion: agrega un nuevo incidente con la informacion parcial a la lista
+     * @param LocalDate dateRepor 
+     * @param String description
+     * @return - 
+     */
+
     public void addIncident(LocalDate dateReport, String description) {
 
         Incident nuevoIncident = new Incident(dateReport, description);
@@ -54,14 +68,7 @@ public class Computer {
 
     }
 
-    public void mostrarIncidentes(){
-
-        
-
-        for(Incident i : listaIncidents){
-
-        }
-    }
+    
 
     
 
